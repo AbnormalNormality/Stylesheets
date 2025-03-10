@@ -1,0 +1,124 @@
+/* https://github.com/AbnormalNormality */
+
+:root {
+  --background-color: #fff;
+  --container-background: #eee;
+  --details-background: #ddd;
+  --summary-background: #ccc;
+
+  --color: #000;
+
+  --container-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #444;
+    --container-background: #666;
+    --details-background: #aaa;
+    --summary-background: #888;
+
+    --color: #fff;
+
+    --container-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--color);
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+  background: var(--container-background);
+
+  width: 90%;
+  margin: 5% auto;
+  padding: 20px;
+
+  border-radius: 10px;
+  box-shadow: var(--container-shadow);
+}
+
+.container * {
+  max-width: 100%;
+
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.container *:not(:last-child):not(details, details *, .img-grid *) {
+  margin-bottom: 10px;
+}
+
+img {
+  border-radius: 10px;
+  box-shadow: var(--container-shadow);
+}
+
+h1 {
+  text-align: center;
+}
+
+details {
+  background-color: var(--details-background);
+
+  padding: 10px;
+
+  border-radius: 10px;
+  padding-bottom: 0;
+}
+
+summary {
+  background-color: var(--summary-background);
+
+  padding: 10px;
+  margin: -10px;
+  margin-bottom: -10px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+details:not([open]) summary {
+  margin-bottom: 0;
+}
+
+details[open] :last-child {
+  margin-bottom: 0;
+  padding-bottom: 10px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.img-grid {
+  background-color: var(--details-background);
+
+  gap: 10px;
+  padding: 10px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  border-radius: 10px;
+}
+
+.img-grid * {
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    margin: 0;
+}
+
+.img-grid *:hover {
+    z-index: 2;
+    transform: scale(1.5);
+    filter: brightness(1);
+}
+
+.img-grid:has(*:hover) *:not(:hover) {
+    filter: brightness(0.5);
+}
