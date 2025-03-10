@@ -17,7 +17,7 @@
       }
 
       body .style-container:not(:last-child) {
-      margin-bottom: 10px;
+        margin-bottom: 10px;
       }
     </style>
   </head>
@@ -27,11 +27,13 @@
     </div>
 
     <div class="style-container">
-      <button onclick="applyStylesheet('Style1/assets/styles.css')">Style 1</button>
-      <button onclick="copyText('Style1/assets/styles.css')">Copy link</button>
+      <button onclick="applyStylesheet('assets/style1.css')">
+        Style 1
+      </button>
+      <button onclick="copyText('assets/style1.css')">Copy link</button>
     </div>
 
-    <hr>
+    <hr />
 
     <div class="container">
       <h1>Heading 1</h1>
@@ -55,6 +57,13 @@
 
       <br />
 
+      <details open>
+        <summary>Summary</summary>
+        <p>Details</p>
+      </details>
+
+      <hr />
+
       <img
         src="https://static.wikia.nocookie.net/0a01eb28-fd76-4d88-816b-ebb8dda50695"
       />
@@ -72,11 +81,6 @@
           src="https://abnormalnormality.github.io/Coffee/assets/winkingBob.jpg"
         />
       </div>
-
-      <details open>
-        <summary>Summary</summary>
-        <p>Details</p>
-      </details>
     </div>
 
     <script>
@@ -105,7 +109,7 @@
 
       function clearStylesheet() {
         const links = document.querySelectorAll('link[rel="stylesheet"]');
-        links.forEach(link => link.remove());
+        links.forEach((link) => link.remove());
       }
     </script>
   </body>
