@@ -7,8 +7,12 @@
   --summary-background: #ccc;
 
   --color: #000;
+  --link-color: #f00;
 
   --container-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  --img-border: 2px solid rgba(0, 0, 0, 0.1);
+  --img-rotate-amount: -10deg;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +23,7 @@
     --summary-background: #888;
 
     --color: #fff;
-
-    --container-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --link-color: #0ff;
   }
 }
 
@@ -28,6 +31,10 @@ body {
   background-color: var(--background-color);
   color: var(--color);
 
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -49,16 +56,25 @@ body {
   word-break: break-word;
 }
 
-.container *:not(:last-child):not(details, details *, .img-grid *) {
+.container *:not(:last-child):not(details, details summary, .img-grid *, hr) {
   margin-bottom: 10px;
 }
 
 img {
   border-radius: 10px;
   box-shadow: var(--container-shadow);
+  border: var(--img-border);
+  max-height: 300px;
+  margin: auto;
+  display: block;
 }
 
 h1 {
+  text-align: center;
+  text-decoration: underline;
+}
+
+h2 {
   text-align: center;
 }
 
@@ -94,6 +110,12 @@ details[open] :last-child {
 
 button {
   cursor: pointer;
+  background-color: var(--details-background);
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: var(--container-shadow);
+  border: none;
+  transition: background-color 0.15s ease;
 }
 
 .img-grid {
@@ -105,20 +127,60 @@ button {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   border-radius: 10px;
+  justify-items: center;
+  align-items: center;
 }
 
 .img-grid * {
-    display: block;
-    transition: transform 0.3s ease, filter 0.3s ease;
-    margin: 0;
+  display: block;
+  transition: transform 0.3s ease, filter 0.3s ease, rotate 0.3s ease;
+  margin: 0;
+  transition-delay: 0s;
 }
 
 .img-grid *:hover {
-    z-index: 2;
-    transform: scale(1.5);
-    filter: brightness(1);
+  z-index: 2;
+  transform: scale(1.25);
+  filter: brightness(1) grayscale(0);
+  rotate: var(--img-rotate-amount);
+}
+
+.img-grid *:hover:nth-child(2n) {
+  rotate: calc(var(--img-rotate-amount) * -1);
 }
 
 .img-grid:has(*:hover) *:not(:hover) {
-    filter: brightness(0.5);
+  filter: brightness(0.5) grayscale(1);
+}
+
+textarea {
+  max-height: 50vw;
+}
+
+::selection {
+  color: var(--container-background);
+  background-color: var(--color);
+}
+
+button:active {
+  background-color: var(--summary-background);
+}
+
+hr {
+  height: 2px;
+  background-color: var(--color);
+  border: none;
+  margin: 20px 10px;
+}
+
+.container + .container {
+  margin-top: 5%;
+}
+
+q {
+  font-style: italic;
+}
+
+a {
+  color: var(--link-color);
 }

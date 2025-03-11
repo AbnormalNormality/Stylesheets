@@ -7,11 +7,15 @@
     <title>Styles</title>
 
     <style>
+      :root {
+        --container-background: #eee;
+      }
+
       .style-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: #eee;
+        background-color: var(--container-background);
         border-radius: 10px;
         padding: 10px;
       }
@@ -20,6 +24,8 @@
         margin-bottom: 10px;
       }
     </style>
+
+    <link rel="stylesheet" href="assets/style1.css?v=<?php echo time(); ?>" />
   </head>
   <body>
     <div class="style-container">
@@ -30,7 +36,16 @@
       <button onclick="applyStylesheet('assets/style1.css')">
         Apply Style 1
       </button>
+      Rounded
       <button onclick="copyText('assets/style1.css')">Copy link</button>
+    </div>
+
+    <div class="style-container">
+      <button onclick="applyStylesheet('assets/style2.css')">
+        Apply Style 2
+      </button>
+      Space
+      <button onclick="copyText('assets/style2.css')">Copy link</button>
     </div>
 
     <hr />
@@ -45,15 +60,51 @@
 
       <p>Paragraph</p>
 
+      <hr />
+
       <p>
-        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        Wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test
       </p>
 
       <button>Button</button>
 
       <br />
 
-      <input />
+      <a href="">Link</a>
+      <blockquote>Block quote</blockquote>
+      <q>Quote (x1-2 &lt;br&gt; below)</q>
+
+      <br /><br />
+
+      <input placeholder="Text Input" />
+
+      <br />
+
+      <input type="button" value="Button input" /> <br />
+      <input type="checkbox" /> <br />
+      <input type="color" /> <br />
+      <input type="date" /> <br />
+      <input type="datetime-local" /> <br />
+      <input type="email" placeholder="Email input" /> <br />
+      <input type="file" /> <br />
+      <input type="hidden" /> <br />
+      <input type="image" /> <br />
+      <input type="month" /> <br />
+      <input type="number" placeholder="Number input" /> <br />
+      <input type="password" placeholder="Passord input" /> <br />
+      <input type="radio" /> <br />
+      <input type="range" /> <br />
+      <input type="reset" /> <br />
+      <input type="search" placeholder="Search input" /> <br />
+      <input type="submit" /> <br />
+      <input type="tel" placeholder="Tel input" /> <br />
+      <input type="time" /> <br />
+      <input type="url" placeholder="URL input" /> <br />
+      <input type="week" />
+
+      <br />
+
+      <textarea placeholder="Textarea"></textarea>
 
       <br />
 
@@ -65,22 +116,31 @@
       <hr />
 
       <img
-        src="https://static.wikia.nocookie.net/0a01eb28-fd76-4d88-816b-ebb8dda50695"
+        src="https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_3x2.jpg"
       />
 
       <div class="img-grid">
         <img
-          src="https://abnormalnormality.github.io/Coffee/assets/grumpyBob.jpg"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDCsqRYLAFDdL4Ix_AHai7kNVyoPV9Ssv1xg&s"
         />
 
         <img
-          src="https://abnormalnormality.github.io/Coffee/assets/amazedBob.jpg"
+          src="https://th-thumbnailer.cdn-si-edu.com/bgmkh2ypz03IkiRR50I-UMaqUQc=/1000x750/filters:no_upscale():focal(1061x707:1062x708)/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/55/95/55958815-3a8a-4032-ac7a-ff8c8ec8898a/gettyimages-1067956982.jpg"
         />
 
         <img
-          src="https://abnormalnormality.github.io/Coffee/assets/winkingBob.jpg"
+        src=https://static.scientificamerican.com/sciam/cache/file/2AE14CDD-1265-470C-9B15F49024186C10_source.jpg?w=600"
         />
       </div>
+    </div>
+
+    <div class="container">
+        <h1>Multiple Containers</h1>
+        <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</q>
+
+        <br />
+
+        <p>Follow me on <a href="https://github.com/AbnormalNormality">GitHub</a>!</p>
     </div>
 
     <script>
@@ -100,7 +160,7 @@
       }
 
       function applyStylesheet(stylesheetPath) {
-        clearStylesheet();
+        // clearStylesheet();
         const link = document.createElement("link");
         link.rel = "stylesheet";
         link.href = stylesheetPath;
