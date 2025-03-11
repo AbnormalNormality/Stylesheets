@@ -56,7 +56,7 @@ body * {
   word-break: break-word;
 }
 
-.container *:not(:last-child):not(details, details summary, .img-grid *, hr) {
+.container *:not(:last-child):not(details summary, .img-grid *, hr) {
   margin-bottom: 10px;
 }
 
