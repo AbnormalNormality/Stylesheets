@@ -5,6 +5,7 @@
   --container-background: #eee;
   --details-background: #ddd;
   --summary-background: #ccc;
+  --deep-details-background: #bbb;
 
   --color: #000;
   --link-color: #f00;
@@ -187,3 +188,37 @@ q {
 a {
   color: var(--link-color);
 }
+
+details details {
+  background-color: var(--summary-background);
+}
+
+details details summary {
+  background-color: var(--deep-details-background);
+}
+
+details {
+  padding: 10px;
+}
+
+details {
+  margin-top: 20px;
+}
+
+details details:not([open]) summary {
+  margin: -10px;
+}
+
+details details details {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+details details details p {
+  padding: -99999999px;
+}
+
+details details * {
+  padding: -99999999px;
+}
+
+/* THIS SHIT FUCKING SUCKS, WHY, WHAT THE HELL IS WRONG WITH THE DETAILS */
