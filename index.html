@@ -30,6 +30,8 @@
   <body>
     <div class="style-container">
       <button onclick="clearStylesheet()">Clear Styles</button>
+      Hold Shift/Ctrl to copy the HTML tag!
+      <button disabled>Copy link</button>
     </div>
 
     <div class="style-container">
@@ -37,7 +39,7 @@
         Apply Style 1
       </button>
       Rounded
-      <button onclick="copyText('assets/style1.css')">Copy link</button>
+      <button onclick="copyLink('assets/style1.css', event)">Copy link</button>
     </div>
 
     <div class="style-container">
@@ -45,7 +47,7 @@
         Apply Style 2
       </button>
       Space
-      <button onclick="copyText('assets/style2.css')">Copy link</button>
+      <button onclick="copyLink('assets/style2.css', event)">Copy link</button>
     </div>
 
     <hr />
@@ -63,7 +65,9 @@
       <hr />
 
       <p>
-        Wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test - wrap test
+        Wrap test - wrap test - wrap test - wrap test - wrap test - wrap test -
+        wrap test - wrap test - wrap test - wrap test - wrap test - wrap test -
+        wrap test - wrap test - wrap test
       </p>
 
       <button>Button</button>
@@ -140,12 +144,22 @@
     </div>
 
     <div class="container">
-        <h1>Multiple Containers</h1>
-        <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</q>
+      <h1>Multiple Containers</h1>
+      <q
+        >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.</q
+      >
 
-        <br />
+      <br />
 
-        <p>Follow me on <a href="https://github.com/AbnormalNormality">GitHub</a>!</p>
+      <p>
+        Follow me on <a href="https://github.com/AbnormalNormality">GitHub</a>!
+      </p>
     </div>
 
     <script>
@@ -175,6 +189,49 @@
       function clearStylesheet() {
         const links = document.querySelectorAll('link[rel="stylesheet"]');
         links.forEach((link) => link.remove());
+      }
+
+      function copyHtml(relativePath) {
+        const fullUrl =
+          '<link rel="stylesheet" href="' +
+          window.location.origin +
+          window.location.pathname.replace("index.html", "") +
+          relativePath +
+          '?v=<?php echo time(); ?>">';
+        navigator.clipboard
+          .writeText(fullUrl)
+          .then(() => {
+            alert("URL copied to clipboard!");
+          })
+          .catch((err) => {
+            console.error("Failed to copy URL: ", err);
+          });
+      }
+
+      function copyLink(relativePath, event) {
+        const fullUrl =
+          window.location.origin +
+          window.location.pathname.replace("index.html", "") +
+          relativePath;
+        let textToCopy;
+
+        if (event.ctrlKey || event.shiftKey) {
+          textToCopy =
+            '<link rel="stylesheet" href="' +
+            fullUrl +
+            '?v=<?php echo time(); ?>">';
+        } else {
+          textToCopy = fullUrl;
+        }
+
+        navigator.clipboard
+          .writeText(textToCopy)
+          .then(() => {
+            alert("URL copied to clipboard!");
+          })
+          .catch((err) => {
+            console.error("Failed to copy URL: ", err);
+          });
       }
     </script>
   </body>

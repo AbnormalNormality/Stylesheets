@@ -109,13 +109,16 @@ details[open] :last-child {
 }
 
 button {
-  cursor: pointer;
   background-color: var(--details-background);
   border-radius: 10px;
   padding: 5px;
   box-shadow: var(--container-shadow);
   border: none;
   transition: background-color 0.15s ease;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
 }
 
 .img-grid {
@@ -159,10 +162,10 @@ textarea {
 
 ::selection {
   color: var(--container-background);
-  background-color: var(--color);
+  background-color: var(--link-color);
 }
 
-button:active {
+button:not(:disabled):active {
   background-color: var(--summary-background);
 }
 
